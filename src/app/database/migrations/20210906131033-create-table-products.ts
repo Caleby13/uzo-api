@@ -15,6 +15,11 @@ module.exports = {
       },
       id_client: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "entites",
+          key: "id",
+        },
       },
       total_cost: {
         type: Sequelize.DECIMAL(12, 6),

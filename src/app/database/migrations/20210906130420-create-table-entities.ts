@@ -15,9 +15,11 @@ module.exports = {
       },
       provider: {
         type: Sequelize.BOOLEAN,
+        allowNull: false,
       },
       client: {
         type: Sequelize.BOOLEAN,
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,

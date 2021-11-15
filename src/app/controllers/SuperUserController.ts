@@ -13,14 +13,10 @@ class SuperUserController {
     try {
       const user = await Users.findByPk(-1);
       if (!!user) {
-        return res
-          .status(400)
-          .json({ sucess: false, message: `Super user already exists` });
+        return res.status(400).json({ message: `Super user already exists` });
       }
       await Users.create(superUser);
-      return res
-        .status(201)
-        .json({ sucess: true, message: "Created super user" });
+      return res.status(201).json({ message: "Created super user" });
     } catch (err) {
       return serverError(res);
     }

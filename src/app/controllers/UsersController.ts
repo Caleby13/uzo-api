@@ -9,7 +9,6 @@ class UsersController {
 
     if (user) {
       return res.status(400).json({
-        sucess: false,
         message: `Username already exists`,
       });
     }
@@ -21,7 +20,7 @@ class UsersController {
         password,
       });
 
-      return res.status(201).json({ sucess: true, user: newUser });
+      return res.status(201).json({ users: newUser });
     } catch (err) {
       return serverError(res);
     }
@@ -29,7 +28,28 @@ class UsersController {
   async index(req: Request, res: Response): Promise<Response> {
     try {
       const users = await Users.findAll();
-      return res.status(200).json({ sucess: true, users });
+      return res.status(200).json({ users });
+    } catch (err) {
+      return serverError(res);
+    }
+  }
+
+  async update(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const user = await Users.findByPk(id);
+
+    if (!user) {
+      return res.status(404).json({
+        message: `User does not exist`,
+      });
+    }
+
+    req.body.username = user.username;
+
+    try {
+      const userUpdated = await user.update(req.body);
+
+      return res.status(200).json({ users: userUpdated });
     } catch (err) {
       return serverError(res);
     }
@@ -42,11 +62,10 @@ class UsersController {
       const user = await Users.findByPk(id);
       if (!user) {
         return res.status(400).json({
-          sucess: false,
           message: `User with id ${id} does not exist`,
         });
       }
-      return res.status(200).json({ sucess: true, user });
+      return res.status(200).json({ users: user });
     } catch (err) {
       return serverError(res);
     }
@@ -67,7 +86,7 @@ class UsersController {
     if (!user) {
       return res
         .status(400)
-        .json({ sucess: false, message: `User with id ${id} does not exist` });
+        .json({ message: `User with id ${id} does not exist` });
     }
 
     try {

@@ -5,3 +5,9 @@ export const usersSchema = Joi.object({
   username: Joi.string().required(),
   password: Joi.string().required(),
 });
+
+export const usersSchemaUpdate = Joi.object({
+  name: Joi.string().optional(),
+  username: Joi.string().optional(),
+  password: Joi.string().optional(),
+});
