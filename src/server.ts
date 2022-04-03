@@ -1,15 +1,29 @@
-import * as dotenv from "dotenv";
-import app from "./app";
+import cors from 'cors';
+import express, { Application } from 'express';
+import routes from './app/routes';
+import './app/database';
 
-const config =
-  process.env.NODE_ENV === "development" || process.env.NODE_ENV === undefined
-    ? ".env"
-    : `.env.${process.env.NODE_ENV}`;
+export class Server {
+  private app: Application;
 
-dotenv.config({ path: __dirname + config });
+  constructor() {
+    this.app = express();
+    this.middlewares();
+    this.routes();
+  }
 
-const port = process.env.PORT || 3333;
+  middlewares(): void {
+    this.app.use(cors());
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: false }));
+  }
 
-app.listen(port, () => {
-  console.log(`Server is running in port ${port} 👍`);
-});
+  routes(): void {
+    this.app.use(routes);
+  }
+
+  listen(port: number | string): void {
+    this.app.listen(port);
+    console.log(`server running in port ${port}`);
+  }
+}
