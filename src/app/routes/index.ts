@@ -7,9 +7,6 @@ import userRoutes from './user.routes';
 
 const routes = Router();
 
-routes.use('/', (req, res) => {
-  return res.send('Funcionando');
-});
 routes.use('/user', userRoutes);
 routes.use('/authenticate', authRoutes);
 
