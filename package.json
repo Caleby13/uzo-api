@@ -4,7 +4,8 @@
   "scripts": {
     "predev": "yarn tsc && NODE_ENV=development",
     "dev": "nodemon --watch 'src/**/*.ts' --ignore __tests__  --exec ts-node src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./dist/index.js"
   },
   "keywords": [],
   "author": "",
