@@ -8,8 +8,7 @@ const InputSchema = new mongoose.Schema({
     uppercase: true,
   },
   amount: {
-    type: Number,
-    required: true,
+    type: String,
   },
   yield: {
     type: Number,
@@ -22,6 +21,11 @@ const InputSchema = new mongoose.Schema({
   unit_cost: {
     type: Number,
     required: true,
+  },
+  provider: {
+    type: String,
+    required: true,
+    uppercase: true,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,

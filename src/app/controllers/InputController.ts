@@ -4,7 +4,10 @@ import Input from '../models/inputs';
 class InputController {
   async store(req: Request, res: Response): Promise<Response> {
     try {
-      const input = await Input.findOne({ name: req.body.name });
+      const input = await Input.findOne({
+        name: req.body.name,
+        provider: req.body.provider,
+      });
 
       if (!!input) {
         return res.status(400).json({ error: 'Input already exists' });
