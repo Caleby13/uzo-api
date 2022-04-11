@@ -6,7 +6,6 @@ class InputController {
     try {
       const input = await Input.findOne({
         name: req.body.name,
-        provider: req.body.provider,
       });
 
       if (!!input) {

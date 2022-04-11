@@ -24,7 +24,6 @@ const InputSchema = new mongoose.Schema({
   },
   provider: {
     type: String,
-    required: true,
     uppercase: true,
   },
   user: {
