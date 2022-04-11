@@ -37,13 +37,12 @@ const authMIddleware = (
     ): void | Response => {
       if (err) {
         return res.status(401).json({ error: 'Token invalid' });
+      } else {
+        req.user_id = decoded.id;
+        return next();
       }
-
-      req.user_id = decoded.id;
     },
   );
-
-  return next();
 };
 
 export default authMIddleware;
