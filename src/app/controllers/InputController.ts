@@ -23,7 +23,7 @@ class InputController {
 
   async index(req: Request, res: Response): Promise<Response> {
     try {
-      const input = await Input.find().populate('user');
+      const input = await Input.find();
       return res.json(input);
     } catch (error) {
       return res.status(400).json({
@@ -35,8 +35,7 @@ class InputController {
   async show(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
-      const input = await Input.findById(id).populate('user');
-
+      const input = await Input.findById(id);
       if (!input) {
         return res.status(400).json({ error: 'Input not found' });
       }

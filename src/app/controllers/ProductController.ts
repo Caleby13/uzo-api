@@ -55,8 +55,9 @@ class InputController {
 
   async index(req: Request, res: Response): Promise<Response> {
     try {
-      const product = await Product.find().populate(['user', 'items']);
-      return res.json(product);
+      const products = await Product.find();
+
+      return res.json(products);
     } catch (error) {
       return res.status(400).json({
         error,
@@ -67,7 +68,7 @@ class InputController {
   async show(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
-      const product = await Product.findById(id).populate(['user', 'items']);
+      const product = await Product.findById(id);
 
       if (!product) {
         return res.status(400).json({ error: 'Product not found' });

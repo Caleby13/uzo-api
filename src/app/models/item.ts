@@ -1,4 +1,5 @@
 import mongoose from '../database';
+import autopopulate from 'mongoose-autopopulate';
 
 const ItemSchema = new mongoose.Schema({
   product: {
@@ -10,6 +11,7 @@ const ItemSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Input',
     required: true,
+    autopopulate: true,
   },
   description: {
     type: String,
@@ -30,6 +32,7 @@ const ItemSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
+    autopopulate: true,
   },
   createdAt: {
     type: Date,
@@ -37,6 +40,7 @@ const ItemSchema = new mongoose.Schema({
   },
 });
 
+ItemSchema.plugin(autopopulate);
 const Item = mongoose.model('Item', ItemSchema);
 
 export default Item;

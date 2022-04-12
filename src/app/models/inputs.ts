@@ -1,4 +1,5 @@
 import mongoose from '../database';
+import autopopulate from 'mongoose-autopopulate';
 
 const InputSchema = new mongoose.Schema({
   name: {
@@ -30,6 +31,7 @@ const InputSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
+    autopopulate: true,
   },
   createdAt: {
     type: Date,
@@ -37,6 +39,7 @@ const InputSchema = new mongoose.Schema({
   },
 });
 
+InputSchema.plugin(autopopulate);
 const Input = mongoose.model('Input', InputSchema);
 
 export default Input;
