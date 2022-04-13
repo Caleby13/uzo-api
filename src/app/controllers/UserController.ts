@@ -21,7 +21,6 @@ class UserController {
 
       const newUser = await User.create(req.body);
       const token = generateToken({
-        expiresIn: 86400,
         id: newUser.id,
         secret: process.env.SECRET_JWT,
       });

@@ -25,7 +25,6 @@ class AuthController {
     user.password = undefined;
 
     const token = generateToken({
-      expiresIn: 86400,
       id: user.id,
       secret: process.env.SECRET_JWT,
     });
