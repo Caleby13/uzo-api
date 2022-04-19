@@ -8,6 +8,14 @@ class InputController {
         name: req.body.name,
       });
 
+      const requiredFields = ['name', 'yield', 'value_package', 'unit_cost'];
+
+      for (const field of requiredFields) {
+        if (!req.body[field]) {
+          return res.status(400).json({ error: `Missing param ${field}` });
+        }
+      }
+
       if (!!input) {
         return res.status(400).json({ error: 'Input already exists' });
       }
