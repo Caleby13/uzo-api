@@ -3,7 +3,15 @@
   "builds": [
     {
       "src": "./dist/index.js",
-      "use": "@now/node"
+      "use": "@now/node",
+      "buildCommand": "yarn build",
+      "installCommand": "yarn install"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/"
     }
   ]
 }
