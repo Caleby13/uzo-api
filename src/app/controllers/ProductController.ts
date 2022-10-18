@@ -39,7 +39,7 @@ class InputController {
             product: product._id,
           });
           await product_item.save();
-          product.items.push(product_item);
+          product.items.push(product_item as typeof Item);
         }),
       );
 
