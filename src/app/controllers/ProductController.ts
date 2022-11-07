@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { ObjectId } from 'mongoose';
 import Item from '../models/item';
 import Product from '../models/product';
 
@@ -113,7 +114,7 @@ class InputController {
       product.total_cost = total_cost;
       product.sale_value = sale_value;
       product.profit = profit;
-      product.user = req.user_id;
+      product.user = req.user_id as any;
 
       await Item.deleteMany({ product: id });
 
