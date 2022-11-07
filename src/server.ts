@@ -1,6 +1,6 @@
 import cors from 'cors';
 import express, { Application } from 'express';
-import routes from './app/routes';
+import routes from './app/api';
 import './app/database';
 
 export class Server {
